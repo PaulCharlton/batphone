@@ -414,6 +414,7 @@ public class BlueToothControl extends AbstractExternalInterface{
 	public void onRemoteNameChanged(Intent intent){
 		BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 		PeerState peer = getPeer(device);
+		Log.v(TAG, "Found (changed): "+device.getName());
 		processName(peer);
 	}
 

@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.SystemClock;
 import android.util.Log;
 
@@ -187,6 +189,18 @@ public class BatPhone extends BroadcastReceiver {
 				if (app.nm != null && app.nm.blueToothControl != null)
 					app.nm.blueToothControl.onNameChanged(intent);
 
+
+			} else if (action.equals(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION)) {
+				int state = intent.getIntExtra(WifiP2pManager.EXTRA_WIFI_STATE, -1);
+				if (state == WifiP2pManager.WIFI_P2P_STATE_ENABLED) {
+
+				}
+			} else if (action.equals(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION)) {
+				//mWifiManager.requestPeers(mWifiChannel, peerListListener);
+			} else if (action.equals(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION)) {
+			} else if (action.equals(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION)) {
+				WifiP2pDevice device = (WifiP2pDevice) intent.getParcelableExtra(
+						WifiP2pManager.EXTRA_WIFI_P2P_DEVICE);
 			} else {
 				Log.v("BatPhone", "Unexpected intent: " + intent.getAction());
 			}
